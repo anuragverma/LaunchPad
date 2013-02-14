@@ -1,0 +1,1 @@
+Contains code for some general purpose algorithms for searching and sorting.
