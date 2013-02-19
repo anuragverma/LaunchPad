@@ -169,5 +169,46 @@ namespace LaunchPadTest
                 Assert.AreEqual(flag, true);
             }
         #endregion
+
+        #region Tests for Quick Sort
+            [TestMethod]
+            public void QuickSortTest1()
+            {
+                double[] array = { 54, 543, -54, 0 };
+                LaunchPad.Sort.QuickSort(array, 0, 3);
+                bool flag = Enumerable.SequenceEqual(array, new double[] { -54, 0, 54, 543 });
+                Assert.AreEqual(flag, true);
+            }
+
+            [TestMethod]
+            // empty array as input
+            public void QuickSortTest2()
+            {
+                double[] array = { };
+                LaunchPad.Sort.QuickSort(array, 0, 0);
+                bool flag = Enumerable.SequenceEqual(array, new double[] { });
+                Assert.AreEqual(flag, true);
+            }
+
+            [TestMethod]
+            // array having all -ve elements
+            public void QuickSortTest3()
+            {
+                double[] array = { -45, -565, -545454, -5 };
+                LaunchPad.Sort.QuickSort(array, 0, 3);
+                bool flag = Enumerable.SequenceEqual(array, new double[] { -545454, -565, -45, -5 });
+                Assert.AreEqual(flag, true);
+            }
+
+            [TestMethod]
+            // array having all elements equal
+            public void QuickSortTest4()
+            {
+                double[] array = { 45, 45, 45, 45 };
+                LaunchPad.Sort.QuickSort(array, 0, 3);
+                bool flag = Enumerable.SequenceEqual(array, new double[] { 45, 45, 45, 45 });
+                Assert.AreEqual(flag, true);
+            }
+        #endregion
     }
 }

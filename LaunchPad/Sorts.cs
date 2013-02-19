@@ -161,10 +161,37 @@ namespace LaunchPad
         }
         #endregion
 
-        public void QuickSort()
+        #region Quick Sort
+        private static int Partition(double[] inputArray, int start, int end)
         {
-
+            double pivot = inputArray[end];
+            int i = start - 1;
+            for (int j = start; j < end; j++)
+            {
+                if (inputArray[j] <= pivot)
+                {
+                    i++;
+                    double temp = inputArray[i];
+                    inputArray[i] = inputArray[j];
+                    inputArray[j] = temp;
+                }
+            }
+            double temp1 = inputArray[i + 1];
+            inputArray[i + 1] = inputArray[end];
+            inputArray[end] = temp1;
+            return i + 1;
         }
+
+        public static void QuickSort(double[] inputArray, int start, int end)
+        {
+            if (start < end)
+            {
+                int pivotIndex = Partition(inputArray, start, end);
+                QuickSort(inputArray, start, pivotIndex - 1);
+                QuickSort(inputArray, pivotIndex + 1, end);
+            }
+        }
+        #endregion
 
         public void CountingSort()
         {
