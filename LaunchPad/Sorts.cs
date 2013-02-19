@@ -9,6 +9,11 @@ namespace LaunchPad
     public class Sort
     {
         #region BubbleSort
+        /*
+         * Procedure for bubble sort.
+         * Takes an array to be sorted as argument.
+         * Sorts in place.
+         * */
         public static void BubbleSort(double[] inputArray)
         {
             for (int i = 0; i < inputArray.Length - 2; i++)
@@ -27,6 +32,11 @@ namespace LaunchPad
         #endregion
 
         #region Insertion Sort
+        /*
+         * Procedure for insertion sort
+         * Takes an inputarray to be sorted as argument.
+         * Sorts in place.
+         */
         public static void InsertionSort(double[] inputArray)
         {
             double key;
@@ -46,6 +56,11 @@ namespace LaunchPad
         #endregion
 
         #region Merge Sort
+        /*
+         * Merges two already sorted arrays into a single sorted array.
+         * Subarrays([startIndex .. midIndex] and [midIndex+1 .. endIndex]) of inputArray are already sorted.
+         * Takes four arguments viz. inputArray, startIndex, midIndex, endIndex
+         */
         private static void Merge(double[] inputArray, int startIndex, int midIndex, int endIndex)
         {
             int n1 = midIndex - startIndex + 1;
@@ -83,6 +98,10 @@ namespace LaunchPad
             }
         }
 
+        /*
+         * Recursively sorts a given inputArray by calling itself on subArrays and then
+         * merging the subarrays
+         */
         public static void MergeSort(double[] inputArray, int startIndex, int endIndex)
         {
             if (startIndex < endIndex)
@@ -162,6 +181,12 @@ namespace LaunchPad
         #endregion
 
         #region Quick Sort
+        /*
+         * Designates an index as pivot.
+         * Finds its correct position by putting all elements less than pivot
+         * on the left of pivot and all elements greater than pivot
+         * to the right of pivot.
+         */
         private static int Partition(double[] inputArray, int start, int end)
         {
             double pivot = inputArray[end];
@@ -182,6 +207,10 @@ namespace LaunchPad
             return i + 1;
         }
 
+        /*
+         * Sorts an input array recursively by finding correct position for a pivot element
+         * and applying QuickSort on left and right subarrays.
+         */
         public static void QuickSort(double[] inputArray, int start, int end)
         {
             if (start < end)
