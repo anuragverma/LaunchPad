@@ -31,6 +31,40 @@ namespace LaunchPad
         }
         #endregion
 
+        #region Selection Sort
+        /*
+         * The algorithm divides the input list into two parts: 
+         * the sublist of items already sorted, which is built up from left to right
+         * at the front (left) of the list, and the sublist of items remaining to be sorted
+         * that occupy the rest of the list. 
+         * Initially, the sorted sublist is empty and the unsorted sublist is the entire input list. 
+         * The algorithm proceeds by finding the smallest
+         * element in the unsorted sublist, exchanging it with the leftmost unsorted element
+         * (putting it in sorted order), and moving the sublist boundaries one element to the right.
+         */
+        public static void SelectionSort(double[] inputArray)
+        {
+            int min;
+            for (int i = 0; i < inputArray.Length - 1; i++)
+            {
+                min = i;
+                for (int j = i + 1; j < inputArray.Length; j++)
+                {
+                    if (inputArray[j] < inputArray[min])
+                    {
+                        min = j;
+                    }
+                }
+                if (min != i)
+                {
+                    double temp = inputArray[min];
+                    inputArray[min] = inputArray[i];
+                    inputArray[i] = temp;
+                }
+            }
+        }
+        #endregion
+
         #region Insertion Sort
         /*
          * Procedure for insertion sort
@@ -53,6 +87,10 @@ namespace LaunchPad
                 inputArray[i + 1] = key;
             }
         }
+        #endregion
+
+        #region Shell Sort
+
         #endregion
 
         #region Merge Sort
@@ -222,13 +260,39 @@ namespace LaunchPad
         }
         #endregion
 
-        public void CountingSort()
+        #region Counting Sort
+        /*
+         * This procedure assumes that each element of the input array lies in the range [0 .. range]
+         * where range is an integer
+         */
+        public static int[] CountingSort(int[] inputArray, int range)
         {
+            int[] tempStorage = new int[range+1];
+            int[] outputArray = new int[inputArray.Length];
 
+            for (int j = 0; j < inputArray.Length; j++)
+            {
+                tempStorage[inputArray[j]] = tempStorage[inputArray[j]] + 1;
+            }
+            //tempStorage[x] now contains the number of elements equal to x.
+            
+            for (int i = 1; i <= range; i++)
+            {
+                tempStorage[i] = tempStorage[i] + tempStorage[i - 1];
+            }
+            //tempStorage[x] now contains the number of elements less than or equal to x.
+            
+            for (int j = inputArray.Length - 1; j >= 0; j-- )
+            {
+                outputArray[tempStorage[inputArray[j]] - 1] = inputArray[j];
+                tempStorage[inputArray[j]] = tempStorage[inputArray[j]] - 1;
+            }
+            return outputArray;
         }
+        #endregion
 
         #region Helper Functions
-        
+
         #endregion
     }
 }

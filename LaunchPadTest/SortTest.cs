@@ -210,5 +210,77 @@ namespace LaunchPadTest
                 Assert.AreEqual(flag, true);
             }
         #endregion
+
+        #region Tests for Selection Sort
+            [TestMethod]
+            public void SelectionSortTest1()
+            {
+                double[] array = { 54, 543, -54, 0 };
+                LaunchPad.Sort.SelectionSort(array);
+                bool flag = Enumerable.SequenceEqual(array, new double[] { -54, 0, 54, 543 });
+                Assert.AreEqual(flag, true);
+            }
+
+            [TestMethod]
+            // empty array as input
+            public void SelectionSortTest2()
+            {
+                double[] array = { };
+                LaunchPad.Sort.SelectionSort(array);
+                bool flag = Enumerable.SequenceEqual(array, new double[] { });
+                Assert.AreEqual(flag, true);
+            }
+
+            [TestMethod]
+            // array having all -ve elements
+            public void SelectionSortTest3()
+            {
+                double[] array = { -45, -565, -545454, -5 };
+                LaunchPad.Sort.SelectionSort(array);
+                bool flag = Enumerable.SequenceEqual(array, new double[] { -545454, -565, -45, -5 });
+                Assert.AreEqual(flag, true);
+            }
+
+            [TestMethod]
+            // array having all elements equal
+            public void SelectionSortTest4()
+            {
+                double[] array = { 45, 45, 45, 45 };
+                LaunchPad.Sort.SelectionSort(array);
+                bool flag = Enumerable.SequenceEqual(array, new double[] { 45, 45, 45, 45 });
+                Assert.AreEqual(flag, true);
+            }
+        #endregion
+
+        #region Tests for Counting Sort
+            [TestMethod]
+            public void CountingSortTest1()
+            {
+                int[] array = { 0, 9, 6, 6, 4, 3, 3, 0, 1, 2, 2, 4 };
+                int[] outArray = LaunchPad.Sort.CountingSort(array, 9);
+                bool flag = Enumerable.SequenceEqual(outArray, new int[] { 0, 0, 1, 2, 2, 3, 3, 4, 4, 6, 6, 9 });
+                Assert.AreEqual(flag, true);
+            }
+
+            [TestMethod]
+            // empty array as input
+            public void CountingSortTest2()
+            {
+                int[] array = { };
+                int[] outArray = LaunchPad.Sort.CountingSort(array, 9);
+                bool flag = Enumerable.SequenceEqual(outArray, new int[] { });
+                Assert.AreEqual(flag, true);
+            }
+
+            [TestMethod]
+            // array having all elements equal
+            public void CountingSortTest3()
+            {
+                int[] array = { 4, 4, 4, 4 };
+                int[] outArray = LaunchPad.Sort.CountingSort(array, 9);
+                bool flag = Enumerable.SequenceEqual(outArray, new int[] { 4, 4, 4, 4 });
+                Assert.AreEqual(flag, true);
+            }
+        #endregion
     }
 }
