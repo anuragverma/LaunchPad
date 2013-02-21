@@ -50,5 +50,14 @@ namespace LaunchPadTest
             bool flag = Enumerable.SequenceEqual(result, outstr);
             Assert.AreEqual(true, flag);
         }
+
+        [TestMethod]
+        public void Rotate2DMatrixTest()
+        {
+            int[,] input = new int[5,5] { {1,2,3,4,9}, {5,6,198,7,8}, {9,111, 10,11,12}, {13,14,222, 15,16}, {23, 56, 34, 67, 87}};
+            //int[,] output = new int[5, 5] { {13,9,5,1},{14,10,6,2},{15,11,7,3},{16,12,8,4}};
+            LaunchPad.Puzzles.Rotate2DMatrix(input, 5);
+            //bool flag = Enumerable.SequenceEqual(input, output);
+        }
     }
 }
