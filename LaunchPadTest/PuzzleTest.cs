@@ -34,5 +34,21 @@ namespace LaunchPadTest
             bool flag = Enumerable.SequenceEqual(inArray, outArray);
             Assert.AreEqual(true, flag);
         }
+
+        [TestMethod]
+        public void AnagramCheckTest1()
+        {
+            Assert.AreEqual(true, LaunchPad.Puzzles.AnagramCheck("asdf", "dfas"));
+        }
+
+        [TestMethod]
+        public void ReplaceSpaceWithTest()
+        {
+            char[] str = { 'a', ' ', 'n', 'u', 'r', ' ', 'a', 'g'};
+            char[] outstr = { 'a', '%', '2', '0', 'n', 'u', 'r', '%', '2', '0', 'a', 'g' };
+            char[] result = LaunchPad.Puzzles.ReplaceSpaceWith(str, 8);
+            bool flag = Enumerable.SequenceEqual(result, outstr);
+            Assert.AreEqual(true, flag);
+        }
     }
 }
