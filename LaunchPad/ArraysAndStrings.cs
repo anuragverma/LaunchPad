@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LaunchPad
 {
-    public class Puzzles
+    public class ArraysAndStrings
     {
         #region Implement an algorithm to determine if a string has all unique characters. What if you can not use additional data structures?
         public static bool IsUniqueChars(String inputString)
@@ -229,6 +229,43 @@ namespace LaunchPad
                     }
                 }
             }
+        }
+        #endregion
+
+        #region Assume you have a method isSubstring which checks if one word is a substring of another. Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using only one call to isSubstring (i.e., “waterbottle” is a rotation of “erbottlewat”).
+        /*
+         * 1. Check if length(s1) == length(s2). If not, return false.
+         * 2. Else, concatenate s1 with itself and see whether s2 is substring of the result.
+         * input: s1 = apple, s2 = pleap ==> apple is a substring of pleappleap
+         * input: s1 = apple, s2 = ppale ==> apple is not a substring of ppaleppale
+         */
+        public static bool IsRotation(String s1, String s2)
+        {
+            int len = s1.Length;
+            // check that s1 and s2 are of equal length and not empty
+            if(len == s2.Length && len > 0)
+            {
+                //concatenate s1 with s1
+                String s1s1 = s1 + s1;
+                return IsSubString(s1s1, s2);
+            }
+            return false;
+        }
+
+        private static bool IsSubString(String s1, String s2)
+        {
+            if (s2.Length > s1.Length)
+            { 
+                return false;
+            }
+            for (int i = 0; i <= s1.Length - s2.Length; i++)
+            {
+                if (s1.Substring(i, s2.Length) == s2)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         #endregion
     }

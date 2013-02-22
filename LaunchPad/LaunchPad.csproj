@@ -39,7 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Puzzles.cs" />
+    <Compile Include="ArraysAndStrings.cs" />
     <Compile Include="Sorts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
