@@ -7,7 +7,7 @@
     <ProjectGuid>{2D7922E4-037F-42CA-B930-5B419394EBD7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>launchPad</RootNamespace>
+    <RootNamespace>LaunchPad</RootNamespace>
     <AssemblyName>LaunchPad</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArraysAndStrings.cs" />
+    <Compile Include="LinkedList.cs" />
     <Compile Include="Sorts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
