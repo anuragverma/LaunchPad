@@ -58,6 +58,53 @@ namespace LaunchPad
             return (stackPointer[stackNum] == 0);
         }
     }
+
+    class ThreeStacksFromOneArray1
+    {
+        static int stackSize = 300;
+        int indexUsed = 0;
+        int[] stackPointer = { -1, -1, -1};
+        StackNode[] buffer = new StackNode[stackSize * 3];
+
+        void Push(int stackNum, int value)
+        {
+            int lastIndex = stackPointer[stackNum]; 
+            stackPointer[stackNum] = indexUsed;
+            indexUsed++;
+            buffer[stackPointer[stackNum]] = new StackNode(lastIndex, value);
+        }
+
+        int Pop(int stackNum)
+        {
+            int value = buffer[stackPointer[stackNum]].value;
+            int lastIndex = stackPointer[stackNum];
+            stackPointer[stackNum] = buffer[stackPointer[stackNum]].previous;
+            buffer[lastIndex] = null;
+            indexUsed--;
+            return value;
+        }
+
+        int Peek(int stackNum)
+        {
+            return buffer[stackPointer[stackNum]].value;
+        }
+
+        bool IsEmpty(int stackNum)
+        {
+            return stackPointer[stackNum] == -1;
+        }
+
+        class StackNode
+        {
+            public int previous;
+            public int value;
+            public StackNode(int p, int v)
+            {
+                value = v;
+                previous = p;
+            }
+        }
+    }
     #endregion
 
     class Stack
