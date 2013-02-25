@@ -1,6 +1,10 @@
-Contains code for some general purpose algorithms for searching and sorting. Now also contains code for some popular puzzles.
-Sorts.cs contains code for some common sorting techniques.
-Puzzles.cs contains code for some popular coding puzzles.
+Sorts.cs contains code for some popular Sorting Algorithms.
+
+ArraysAndStrings.cs contians puzzles related to arrays and strings.
+
+LinkedList.cs contains implementation and some puzzles on linked lists.
+
+StacksAndQueues.cs contains implementation and some puzzles on stacks and queues.
 
 ----------------------
 Language used: C#
