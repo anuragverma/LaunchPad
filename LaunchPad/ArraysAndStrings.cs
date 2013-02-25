@@ -19,6 +19,7 @@ namespace LaunchPad
                 {
                     return false;
                 }
+                charset[char_value] = true;
             }
             return true;
         }
