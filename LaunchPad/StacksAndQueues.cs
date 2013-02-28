@@ -11,6 +11,46 @@ namespace LaunchPad
         
     }
 
+    #region Design a stack which has a min function that returns minimum element in O(1) time
+    /*
+     * You can implement this by having each node in the stack keep track of the minimum beneath itself. 
+     * Then, to find the min, you just look at what the top element thinks is the min.
+     * When you push an element onto the stack, the element is given the current minimum. 
+     * It sets its “local min” to be the min.
+     */
+    class StackWithMin : Stack<NodeWithMin>
+    {
+        public void Push(int value)
+        {
+            int newMin = Math.Min(value, Min());
+            base.Push(new NodeWithMin(value, newMin));
+        }
+
+        public int Min()
+        {
+            if(this.Count == 0)
+            {
+                return Int32.MaxValue;
+            }
+            else
+            {
+               return Peek().min;
+            }
+        }
+    }
+
+    class NodeWithMin
+    {
+        public int value;
+        public int min;
+        public NodeWithMin(int value, int min)
+        {
+            this.value = value;
+            this.min = min;
+        }
+    }
+    #endregion
+
     #region Describe how you could use a single array to implement three stacks
     class ThreeStacksFromOneArray
     {
