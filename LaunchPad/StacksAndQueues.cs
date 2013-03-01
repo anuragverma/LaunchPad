@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,112 @@ namespace LaunchPad
     {
         
     }
+
+    #region Implement a set of stacks
+    /*
+     * Imagine a (literal) stack of plates. If the stack gets too high, it might topple. 
+     * Therefore, in real life, we would likely start a new stack when the previous stack exceeds some threshold. 
+     * Implement a data structure SetOfStacks that mimics this. SetOf-Stacks should be composed of several stacks, 
+     * and should create a new stack once the previous one exceeds capacity. 
+     * SetOfStacks.push() and SetOfStacks.pop() should behave identically to a single stack 
+     * (that is, pop() should return the same values as it would if there were just a single stack).
+     * FOLLOW UP
+     * Implement a function popAt(int index) which performs a pop operation on a specific sub-stack.
+     */
+    class SetOfStacks
+    {
+        //ArrayList<Stack> Stacks = new ArrayList<Stack>(); -- ArrayList is a non-generic type & can't be used with type args
+        List<Stack1> Stacks = new List<Stack1>();
+        public int capacity;
+
+        public SetOfStacks(int capacity)
+        {
+            this.capacity = capacity;
+        }
+
+        public Stack1 GetLastStack()
+        {
+            if (Stacks.Count == 0)
+            {
+                return null;
+            }
+            return Stacks[Stacks.Count - 1];
+        }
+
+        public void Push(int value)
+        {
+            Stack1 last = Stacks[Stacks.Count - 1];
+            if (last != null && !last.IsAtCapacity())
+            {
+                //add to last stack 
+                last.Push(value);
+            }
+            else
+            {
+                //create new stack
+                Stack1 s1 = new Stack1(capacity); //need capacity of the new stack at creation time, so passed it in SetOfStacks ctor
+                s1.Push(value);
+                //add new stack to list of stacks
+                Stacks.Add(s1);
+            }
+        }
+
+        public int Pop()
+        {
+            Stack1 last = Stacks[Stacks.Count - 1];
+            int value = last.Pop();
+            if (last.size == 0) //need to check if stack is empty now -- so need a size attribute in the custom stack class
+            {
+                //since the last stack is empty .. remove it.
+                Stacks.RemoveAt(Stacks.Count - 1);
+            }
+            return value;
+        }
+    }
+
+    class Stack1
+    {
+        private int capacity;
+        public Node top, bottom;
+        public int size = 0;
+
+        public Stack1(int capacity)
+        {
+            this.capacity = capacity;
+        }
+
+        public bool IsAtCapacity()
+        {
+            return (capacity == size);
+        }
+
+        public bool Push(int value)
+        {
+            if (size >= capacity)
+            {
+                return false;
+            }
+            size++;
+            Node n = new Node(value);
+            n.next = top;
+            top = n;
+            return true;
+        }
+
+        public int Pop()
+        {
+            Node temp = top;
+            top.next = top;
+            size--;
+            return temp.data;
+        }
+
+        public bool IsEmpty()
+        {
+            return size == 0;
+        }
+    }
+    #endregion
 
     #region Design a stack which has a min function that returns minimum element in O(1) time
     /*
