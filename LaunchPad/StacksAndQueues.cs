@@ -12,6 +12,74 @@ namespace LaunchPad
         
     }
 
+    #region Implement Towers of Hanoi
+    /*
+     * In the classic problem of the Towers of Hanoi, you have 3 rods and N disks of different sizes which can slide onto any tower. 
+     * The puzzle starts with disks sorted in ascending order of size from top to bottom 
+     * (e.g., each disk sits on top of an even larger one). You have the following constraints:
+     * (A) Only one disk can be moved at a time.
+     * (B) A disk is slid off the top of one rod onto the next rod.
+     * (C) A disk can only be placed on top of a larger disk.
+     * Write a program to move the disks from the first rod to the last using Stacks.
+     */
+    public class Tower
+    {
+        private Stack<int> disks;
+        private int index;
+
+        public int Index
+        {
+            get { return index; }
+            set { /*index = value;*/ }
+        }
+        
+        public Tower(int i)
+        {
+            disks = new Stack<int>();
+            index = i;
+        }
+
+        public void Add(int value)
+        {
+            if (disks.Count != 0 && disks.Peek() <= value)
+            {
+                Console.WriteLine("Error placing disk " + value);
+            }
+            else
+            {
+                disks.Push(value);
+            }
+        }
+
+        //Print all disks of a tower
+        public void Print()
+        {
+            Console.WriteLine("Contents of Tower " + Index);
+            for (int i = disks.Count - 1; i >= 0; i--)
+            {
+                Console.WriteLine(disks.ElementAt(i));
+            }
+        }
+
+        public void MoveDisks(int n, Tower destination, Tower buffer)
+        {
+            if (n > 0)
+            {
+                MoveDisks(n - 1, buffer, destination);
+                MoveTopTo(destination);
+                buffer.MoveDisks(n - 1, destination, this);
+            }
+        }
+
+        //Move top of this tower to destination tower
+        public void MoveTopTo(Tower destination)
+        {
+            int top = disks.Pop();
+            destination.Add(top);
+        }
+    }
+    #endregion
+
     #region Implement a set of stacks
     /*
      * Imagine a (literal) stack of plates. If the stack gets too high, it might topple. 
@@ -254,6 +322,7 @@ namespace LaunchPad
     }
     #endregion
 
+    #region Definition of a Stack
     class Stack
     {
         Node top;
@@ -275,7 +344,9 @@ namespace LaunchPad
             top = t;
         }
     }
+    #endregion
 
+    #region Definition of a Queue
     class Queue
     {
         Node front, back;
@@ -304,4 +375,5 @@ namespace LaunchPad
             return -1;
         }
     }
+    #endregion
 }
