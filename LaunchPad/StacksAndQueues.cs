@@ -9,8 +9,69 @@ namespace LaunchPad
 {
     class StacksAndQueues
     {
-        
+        #region Write a program to sort a stack in ascending order.
+        /*You should not make any assumptions about how the stack is implemented. 
+         *The following are the only functions that should be used to write this program: push | pop | peek | isEmpty.
+         */
+        public static Stack<int> SortStack(Stack<int> s)
+        {
+            Stack<int> r = new Stack<int>();
+            while (s.Count != 0)
+            {
+                int tmp = s.Pop();
+                while (r.Count != 0 && r.Peek() > tmp)
+                {
+                    s.Push(r.Pop());
+                }
+                r.Push(tmp);
+            }
+            return r;
+        }
+        #endregion   
     }
+
+    #region Implement a MyQueue class which implements a queue using two stacks.
+    class MyQueue<T>
+    {
+        Stack<T> s1, s2;
+        public MyQueue()
+        {
+            s1 = new Stack<T>();
+            s2 = new Stack<T>();
+        }
+
+        public void Add(T value)
+        {
+            s1.Push(value);
+        }
+
+        public T Peek()
+        {
+            if (s2.Count != 0)
+            {
+                return s2.Peek();
+            }
+            while (s1.Count != 0)
+            {
+                s2.Push(s1.Pop());
+            }
+            return s2.Peek();
+        }
+
+        public T Push()
+        {
+            if (s2.Count != 0)
+            {
+                return s2.Pop();
+            }
+            while (s1.Count != 0)
+            {
+                s2.Push(s1.Pop());
+            }
+            return s2.Pop();
+        }
+    }
+    #endregion
 
     #region Implement Towers of Hanoi
     /*

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Express 2012 for Windows Desktop
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaunchPad", "launchPad\LaunchPad.csproj", "{2D7922E4-037F-42CA-B930-5B419394EBD7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaunchPadTest", "LaunchPadTest\LaunchPadTest.csproj", "{978E7748-1B88-4009-AC55-9E710B14DE89}"
