@@ -23,6 +23,23 @@ namespace LaunchPad
             }
             return true;
         }
+
+        //alternate method to save space, provided that the input string can only contain chars between 'a' and 'z'
+        public static bool IsUniqueChars1(String inputString)
+        {
+            int checker = 0;
+            for (int i = 0; i < inputString.Length; i++)
+            {
+                int value = inputString.ElementAt(i) - 'a';
+                if((checker & (1 << value)) > 0)
+                {
+                    return false;
+                }
+                checker |= (1 << value);
+            }
+            return true;
+        }
+
         #endregion
 
         #region Write code to reverse a String.
